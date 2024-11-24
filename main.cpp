@@ -1,4 +1,5 @@
-﻿#include "Matrix/MatrixMult.h"
+﻿//main.cpp
+#include "Matrix/MatrixMult.h"
 #include <chrono>
 #include <math.h>
 
@@ -8,12 +9,12 @@ int main()
    for (int i = 1; i <= 5 ;i++)
    {
       std::cout << "\n\nfor " << i << std::endl;
-      size_t size = 1000;
-      size = size * i;
-      MatrixA *aA, *cA;
+      size_t size = 1000 * pow(i, 1.0 / 3.0);
       int* matrix = getRawMatrix(size);
-      aA = RtoA(matrix, size);
+      
+      MatrixA* aA, * cA;
 
+      aA = RtoA(matrix, size);
       cA = aA->getTransposed();
       {
          const auto start = std::chrono::steady_clock::now();
@@ -113,9 +114,11 @@ int main()
          const auto start = std::chrono::steady_clock::now();
          auto b = aVR->multiply(*aVR);
          const auto end = std::chrono::steady_clock::now();
-         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+         auto elapsed = 
+            std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
          std::cout << "Linear VectorRow: " << elapsed.count() << std::endl;
-         std::ofstream file("Timer/VRlapsed.txt", i == 1 ? std::ios::ate : std::ios::app);
+         std::ofstream file("Timer/VRlapsed.txt", i == 1 ? std::ios::ate :
+            std::ios::app);
          file << elapsed.count() << std::endl;
          file.close();
          delete b;
@@ -125,9 +128,11 @@ int main()
          const auto start = std::chrono::steady_clock::now();
          auto b = aVR->multiplyT(*cVR);
          const auto end = std::chrono::steady_clock::now();
-         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+         auto elapsed = 
+            std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
          std::cout << "Transposed VectorRow: " << elapsed.count() << std::endl;
-         std::ofstream file("Timer/VRTElapsed.txt", i == 1 ? std::ios::ate : std::ios::app);
+         std::ofstream file("Timer/VRTElapsed.txt", i == 1 ? std::ios::ate :
+            std::ios::app);
          file << elapsed.count() << std::endl;
          file.close();
          delete b;
