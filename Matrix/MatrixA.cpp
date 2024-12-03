@@ -103,3 +103,64 @@ MatrixA* MatrixA::multiplyT(const MatrixA& b) const
 
 	return new MatrixA(result, size);
 }
+
+void MatrixA::multiply(const MatrixA& b, int** result) const
+{
+	for (size_t y = 0; y < size; y++)
+	{
+		int* row = new int[size];
+		for (size_t x = 0; x < size; x++)
+		{
+			int accum = 0;
+			for (size_t n = 0; n < size; n++)
+			{
+				accum += matrix[y][n] * b.matrix[n][x];
+			}
+			row[x] = accum;
+		}
+		result[y] = row;
+	}
+
+#ifdef DEBUG
+	for (size_t y = 0; y < size; y++)
+	{
+		for (size_t x = 0; x < size; x++)
+		{
+			std::cout << result[y][x] << " ";
+		}
+		std::cout << std::endl;
+	}
+#endif
+
+	return;
+}
+void MatrixA::multiplyT(const MatrixA& b, int** result) const
+{
+	for (size_t y = 0; y < size; y++)
+	{
+		int* row = new int[size];
+		for (size_t x = 0; x < size; x++)
+		{
+			int accum = 0;
+			for (size_t n = 0; n < size; n++)
+			{
+				accum += matrix[y][n] * b.matrix[x][n];
+			}
+			row[x] = accum;
+		}
+		result[y] = row;
+	}
+
+#ifdef DEBUG
+	for (size_t y = 0; y < size; y++)
+	{
+		for (size_t x = 0; x < size; x++)
+		{
+			std::cout << result[y][x] << " ";
+		}
+		std::cout << std::endl;
+	}
+#endif
+
+	return;
+}

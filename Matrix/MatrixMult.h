@@ -1,5 +1,4 @@
-﻿//MatrixMult.h
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -19,6 +18,8 @@ public:
 	MatrixA* getTransposed() const;
 	MatrixA* multiply(const MatrixA& b) const;
 	MatrixA* multiplyT(const MatrixA& b) const;
+	void multiply(const MatrixA& b, int** result) const;
+	void multiplyT(const MatrixA& b, int** result) const;
 };
 
 class MatrixAR // R arr
@@ -34,6 +35,8 @@ public:
 	MatrixAR* getTransposed() const;
 	MatrixAR* multiply(const MatrixAR& b) const;
 	MatrixAR* multiplyT(const MatrixAR& b) const;
+	void multiply(const MatrixAR& b,int* result) const;
+	void multiplyT(const MatrixAR& b, int* result) const;
 };
 
 class MatrixV // R^2 vector
@@ -48,6 +51,8 @@ public:
 	MatrixV* getTransposed() const;
 	MatrixV* multiply(const MatrixV& b) const;
 	MatrixV* multiplyT(const MatrixV& b) const;
+	void multiply(const MatrixV& b, std::vector<std::vector<int>*>* result) const;
+	void multiplyT(const MatrixV& b, std::vector<std::vector<int>*>* result) const;
 };
 
 class MatrixVR // R vector
@@ -62,6 +67,8 @@ public:
 	MatrixVR* getTransposed() const;
 	MatrixVR* multiply(const MatrixVR& b) const;
 	MatrixVR* multiplyT(const MatrixVR& b) const;
+	void multiply(const MatrixVR& b, std::vector<int>* result) const;
+	void multiplyT(const MatrixVR& b, std::vector<int>* result) const;
 };
 
 int* getRawMatrix(const size_t size);
