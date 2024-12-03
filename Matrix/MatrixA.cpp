@@ -104,7 +104,7 @@ MatrixA* MatrixA::multiplyT(const MatrixA& b) const
 	return new MatrixA(result, size);
 }
 
-MatrixA* MatrixA::multiply(const MatrixA& b, int** result) const
+void MatrixA::multiply(const MatrixA& b, int** result) const
 {
 	for (size_t y = 0; y < size; y++)
 	{
@@ -132,9 +132,9 @@ MatrixA* MatrixA::multiply(const MatrixA& b, int** result) const
 	}
 #endif
 
-	return new MatrixA(result, size);
+	return;
 }
-MatrixA* MatrixA::multiplyT(const MatrixA& b, int** result) const
+void MatrixA::multiplyT(const MatrixA& b, int** result) const
 {
 	for (size_t y = 0; y < size; y++)
 	{
@@ -162,5 +162,5 @@ MatrixA* MatrixA::multiplyT(const MatrixA& b, int** result) const
 	}
 #endif
 
-	return new MatrixA(result, size);
+	return;
 }

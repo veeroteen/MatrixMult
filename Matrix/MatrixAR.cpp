@@ -88,7 +88,7 @@ MatrixAR* MatrixAR::multiplyT(const MatrixAR& b) const
 }
 
 
-MatrixAR* MatrixAR::multiply(const MatrixAR& b,int* result) const
+void MatrixAR::multiply(const MatrixAR& b,int* result) const
 {
 	for (size_t y = 0; y < size; y++)
 	{
@@ -113,10 +113,10 @@ MatrixAR* MatrixAR::multiply(const MatrixAR& b,int* result) const
 		std::cout << std::endl;
 	}
 #endif
-	return new MatrixAR(result, size);
+	return;
 }
 
-MatrixAR* MatrixAR::multiplyT(const MatrixAR& b, int* result) const
+void MatrixAR::multiplyT(const MatrixAR& b, int* result) const
 {
 	for (size_t y = 0; y < size; y++)
 	{
@@ -141,7 +141,7 @@ MatrixAR* MatrixAR::multiplyT(const MatrixAR& b, int* result) const
 		std::cout << std::endl;
 	}
 #endif
-	return new MatrixAR(result, size);
+	return;
 
 
 }

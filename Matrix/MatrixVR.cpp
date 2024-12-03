@@ -86,7 +86,7 @@ MatrixVR* MatrixVR::multiplyT(const MatrixVR& b) const
 
 }
 
-MatrixVR* MatrixVR::multiply(const MatrixVR& b, std::vector<int>* result) const
+void MatrixVR::multiply(const MatrixVR& b, std::vector<int>* result) const
 {
 	for (size_t y = 0; y < size; y++)
 	{
@@ -111,10 +111,10 @@ MatrixVR* MatrixVR::multiply(const MatrixVR& b, std::vector<int>* result) const
 		std::cout << std::endl;
 	}
 #endif
-	return new MatrixVR(result, size);
+	return;
 
 }
-MatrixVR* MatrixVR::multiplyT(const MatrixVR& b, std::vector<int>* result) const
+void MatrixVR::multiplyT(const MatrixVR& b, std::vector<int>* result) const
 {
 	for (size_t y = 0; y < size; y++)
 	{
@@ -139,6 +139,6 @@ MatrixVR* MatrixVR::multiplyT(const MatrixVR& b, std::vector<int>* result) const
 		std::cout << std::endl;
 	}
 #endif
-	return new MatrixVR(result, size);
+	return;
 
 }

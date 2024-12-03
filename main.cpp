@@ -8,10 +8,12 @@ int main()
    for (int i = 1; i <= 5 ;i++)
    {
       std::cout << "\n\nfor " << i << std::endl;
-      size_t size = 1000;
-      size = size * i;
-      MatrixA *aA, *cA;
+      size_t size = 1000 * pow(i, 1.0 / 3.0);
+      
       int* matrix = getRawMatrix(size);
+
+      /*
+      MatrixA* aA, * cA;
       aA = RtoA(matrix, size);
 
       cA = aA->getTransposed();
@@ -105,34 +107,34 @@ int main()
       }
       delete aV;
       delete cV;
-      
+      */
       MatrixVR* aVR, * cVR;
       aVR = RtoVR(matrix,size);
       cVR = aVR->getTransposed();
+
+      std::vector<int>* result = new std::vector<int>(size * size);
       {
          const auto start = std::chrono::steady_clock::now();
-         auto b = aVR->multiply(*aVR);
+         aVR->multiply(*aVR,result);
          const auto end = std::chrono::steady_clock::now();
          auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
          std::cout << "Linear VectorRow: " << elapsed.count() << std::endl;
          std::ofstream file("Timer/VRlapsed.txt", i == 1 ? std::ios::ate : std::ios::app);
          file << elapsed.count() << std::endl;
          file.close();
-         delete b;
       }
 
       {
          const auto start = std::chrono::steady_clock::now();
-         auto b = aVR->multiplyT(*cVR);
+         aVR->multiplyT(*cVR,result);
          const auto end = std::chrono::steady_clock::now();
          auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
          std::cout << "Transposed VectorRow: " << elapsed.count() << std::endl;
          std::ofstream file("Timer/VRTElapsed.txt", i == 1 ? std::ios::ate : std::ios::app);
          file << elapsed.count() << std::endl;
          file.close();
-         delete b;
       }
-      
+      delete result;
       delete aVR;
       delete cVR;
       delete[] matrix;

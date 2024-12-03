@@ -100,7 +100,7 @@ MatrixV* MatrixV::multiplyT(const MatrixV& b) const
 	return new MatrixV(result);
 }
 
-MatrixV* MatrixV::multiply(const MatrixV& b, std::vector<std::vector<int>*> *result) const
+void MatrixV::multiply(const MatrixV& b, std::vector<std::vector<int>*> *result) const
 {
 	for (int y = 0; y < matrix->size(); y++)
 	{
@@ -128,10 +128,10 @@ MatrixV* MatrixV::multiply(const MatrixV& b, std::vector<std::vector<int>*> *res
 	}
 #endif
 
-	return new MatrixV(result);
+	return;
 }
 
-MatrixV* MatrixV::multiplyT(const MatrixV& b, std::vector<std::vector<int>*>* result) const
+void MatrixV::multiplyT(const MatrixV& b, std::vector<std::vector<int>*>* result) const
 {
 	for (int y = 0; y < matrix->size(); y++)
 	{
@@ -160,5 +160,5 @@ MatrixV* MatrixV::multiplyT(const MatrixV& b, std::vector<std::vector<int>*>* re
 	}
 #endif
 
-	return new MatrixV(result);
+	return;
 }
